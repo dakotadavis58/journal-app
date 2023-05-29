@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model JournalEntry {
+  id      String   @id @default(cuid())
+  date    DateTime
+  morning Morning?
+  evening Evening?
+  user    User     @relation(fields: [userId], references: [id])
+  userId  String
+}
+
+model Morning {
+  id                  String        @id @default(cuid())
+  quoteOfDay          String
+  thoughtOfDay        String
+  affirmations        String[]
+  gratitudeStatements String[]
+  morningChecklist    String[]
+  journalEntry        JournalEntry? @relation(fields: [journalEntryId], references: [id])
+  journalEntryId      String        @unique
+}
+
+model Evening {
+  id                  String        @id @default(cuid())
+  greatThings         String[]
+  thingsCouldBeBetter String[]
+  feelings            String[]
+  nightChecklist      String[]
+  journalEntry        JournalEntry? @relation(fields: [journalEntryId], references: [id])
+  journalEntryId      String        @unique
+}
+
+model User {
+  id           String         @id @default(cuid())
+  supabaseId   String         @unique @map("supabase_id")
+  name         String
+  email        String         @unique
+  image        String?
+  entries      JournalEntry[]
+  achievements Achievement[]
+}
+
+model Achievement {
+  id          String @id @default(cuid())
+  title       String
+  description String
+  user        User   @relation(fields: [userId], references: [id])
+  userId      String
+}
