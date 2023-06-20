@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { useState } from "react";
 import { useUser } from "@supabase/auth-helpers-react";
+import BottomNavBar from "./BottomNav";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -40,9 +41,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         title="My Journal App"
         navLinks={navLinks}
       />
-      <main className={`min-h-screen px-8 py-2`}>{children}</main>
+      <main className={`min-h-[92vh] px-2 py-2`}>{children}</main>
       {menuOpen && <div className="fixed inset-0 bg-black bg-opacity-50"></div>}
       <Footer />
+      <BottomNavBar />
     </div>
   );
 };

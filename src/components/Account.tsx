@@ -5,6 +5,7 @@ import {
   Session,
 } from "@supabase/auth-helpers-react";
 import { Database } from "../types/supabase";
+import BottomNavBar from "./layout/BottomNav";
 type User = Database["public"]["Tables"]["User"]["Row"];
 
 export default function Account({ session }: { session: Session }) {
@@ -39,6 +40,7 @@ export default function Account({ session }: { session: Session }) {
           type="text"
           value={name || ""}
           onChange={(e) => setName(e.target.value)}
+          className="bg-black"
         />
       </div>
 

@@ -40,15 +40,15 @@ const Header: React.FC<HeaderProps> = ({
         <Navbar navLinks={navLinks} />
       </div>
       <div className="md:hidden relative">
-        <button
+        {/* <button
           className="hamburger"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle navigation"
         >
           Open
-        </button>
+        </button> */}
       </div>
-      <Sidebar setIsOpen={setMenuOpen} isOpen={menuOpen} navLinks={navLinks} />
+      {/* <Sidebar setIsOpen={setMenuOpen} isOpen={menuOpen} navLinks={navLinks} /> */}
     </header>
   );
 };

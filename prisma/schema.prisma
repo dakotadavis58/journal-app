@@ -13,6 +13,7 @@ datasource db {
 model JournalEntry {
   id      String   @id @default(cuid())
   date    DateTime
+  image   String?
   morning Morning?
   evening Evening?
   user    User     @relation(fields: [userId], references: [id])
